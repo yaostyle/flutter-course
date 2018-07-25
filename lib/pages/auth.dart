@@ -44,8 +44,8 @@ class _AuthPageState extends State<AuthPage> {
                 value: _acceptTerms,
                 onChanged: (bool value) {
                   setState(() {
-                                      _acceptTerms = value;
-                                    });
+                    _acceptTerms = value;
+                  });
                 },
                 title: Text('Accept Terms'),
               ),
