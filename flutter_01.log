@@ -1,0 +1,67 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = '/Users/chsu/Flutter/flutter/version' (OS Error: Permission denied, errno = 13)
+
+```
+#0      _File.open.<anonymous closure> (dart:io/file_impl.dart:368)
+#1      _rootRunUnary (dart:async/zone.dart:1134)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1031)
+#3      _FutureListener.handleValue (dart:async/future_impl.dart:129)
+#4      Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:633)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:662)
+#6      Future._completeWithValue (dart:async/future_impl.dart:477)
+#7      Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:507)
+#8      _rootRun (dart:async/zone.dart:1126)
+#9      _CustomZone.run (dart:async/zone.dart:1023)
+#10     _CustomZone.bindCallback.<anonymous closure> (dart:async/zone.dart:949)
+#11     _microtaskLoop (dart:async/schedule_microtask.dart:41)
+#12     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50)
+#13     _runPendingImmediateCallback (dart:isolate-patch/dart:isolate/isolate_patch.dart:113)
+#14     _RawReceivePortImpl._handleMessage (dart:isolate-patch/dart:isolate/isolate_patch.dart:166)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel beta, v0.5.1, on Mac OS X 10.12.6 16G1510, locale en-US)
+    • Flutter version 0.5.1 at /Users/chsu/Flutter/flutter
+    • Framework revision c7ea3ca377 (7 weeks ago), 2018-05-29 21:07:33 +0200
+    • Engine revision 1ed25ca7b7
+    • Dart version 2.0.0-dev.58.0.flutter-f981f09760
+
+[✓] Android toolchain - develop for Android devices (Android SDK 28.0.1)
+    • Android SDK at /Users/chsu/Library/Android/sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-28, build-tools 28.0.1
+    • Java binary at: /Applications/Android Studio.app/Contents/jre/jdk/Contents/Home/bin/java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b01)
+    • All Android licenses accepted.
+
+[✓] iOS toolchain - develop for iOS devices (Xcode 9.2)
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Xcode 9.2, Build version 9C40b
+    • ios-deploy 1.9.2
+    • CocoaPods version 1.5.3
+
+[✓] Android Studio (version 3.1)
+    • Android Studio at /Applications/Android Studio.app/Contents
+    ✗ Flutter plugin not installed; this adds Flutter specific functionality.
+    ✗ Dart plugin not installed; this adds Dart specific functionality.
+    • Java version OpenJDK Runtime Environment (build 1.8.0_152-release-1024-b01)
+
+[!] VS Code (version 1.25.1)
+    • VS Code at /Applications/Visual Studio Code.app/Contents
+    • Flutter extension not installed; install from
+      https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+
+[✓] Connected devices (1 available)
+    • Android SDK built for x86 • emulator-5554 • android-x86 • Android 8.1.0 (API 27) (emulator)
+
+! Doctor found issues in 1 category.
+```
