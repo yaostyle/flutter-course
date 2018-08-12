@@ -25,6 +25,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
   Widget _buildTitleTextField() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Product Title'),
+      initialValue:  widget.product == null ? '' : widget.product['title'],
       validator: (String value) {
         // if (value.trim().length <= 0) {
         if (value.isEmpty || value.length < 5) {
@@ -41,6 +42,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
     return TextFormField(
       maxLines: 4,
       decoration: InputDecoration(labelText: 'Product Description'),
+      initialValue:  widget.product == null ? '' : widget.product['description'],
       validator: (String value) {
         // if (value.trim().length <= 0) {
         if (value.isEmpty || value.length < 10) {
@@ -49,6 +51,25 @@ class _ProductEditPageState extends State<ProductEditPage> {
       },
       onSaved: (String value) {
         _formData['description'] = value;
+      },
+    );
+  }
+
+  Widget _buildPriceTextField() {
+    return TextFormField(
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(labelText: 'Product Price'),
+      initialValue:
+          widget.product == null ? '' : widget.product['price'].toString(),
+      validator: (String value) {
+        // if (value.trim().length <= 0) {
+        if (value.isEmpty ||
+            !RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d+)?$').hasMatch(value)) {
+          return 'Price is required and should be a number.';
+        }
+      },
+      onSaved: (String value) {
+        _formData['price'] = double.parse(value);
       },
     );
   }
@@ -63,30 +84,12 @@ class _ProductEditPageState extends State<ProductEditPage> {
     Navigator.pushReplacementNamed(context, '/products');
   }
 
-  Widget _buildPriceTextField() {
-    return TextFormField(
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: 'Product Price'),
-      validator: (String value) {
-        // if (value.trim().length <= 0) {
-        if (value.isEmpty ||
-            !RegExp(r'^(?:[1-9]\d*|0)?(?:\.\d+)?$').hasMatch(value)) {
-          return 'Price is required and should be a number.';
-        }
-      },
-      onSaved: (String value) {
-        _formData['price'] = double.parse(value);
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
     final double targetPadding = deviceWidth - targetWidth;
-
-    return GestureDetector(
+    final Widget pageContent = GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
@@ -121,5 +124,14 @@ class _ProductEditPageState extends State<ProductEditPage> {
         ),
       ),
     );
+
+    return widget.product == null
+        ? pageContent
+        : Scaffold(
+            appBar: AppBar(
+              title: Text('Edit Product'),
+            ),
+            body: pageContent,
+          );
   }
 }
