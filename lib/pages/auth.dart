@@ -73,7 +73,7 @@ class _AuthPageState extends State<AuthPage> {
       return;
     }
     _formKey.currentState.save();
-    print(_formData);
+    
     Navigator.pushReplacementNamed(context, '/products');
   }
 
